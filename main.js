@@ -1,10 +1,14 @@
 const { app, BrowserWindow } = require('electron/main')
-
+const path = require('node:path')
 // 创建一个窗口
 const creatWindow = () => {
   const win = new BrowserWindow({
     width: 800, // 应用页面宽
     height: 800, // 应用页面高
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+
     // autoHideMenuBar: true, // 是否隐藏默认菜单栏
     // x: 0, // 初始化水平位置
     // y: 0, // 初始化垂直位置
@@ -13,7 +17,7 @@ const creatWindow = () => {
   // 加载页面 哔哩哔哩页面
   // win.loadURL('https://www.bilibili.com/')
   // 加载本地文件
-  win.loadFile('index.html')
+  win.loadFile('pages/index.html')
 }
 
 app.on('ready', () => {
