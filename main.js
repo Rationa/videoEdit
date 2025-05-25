@@ -1,5 +1,12 @@
-const { app, BrowserWindow } = require('electron/main')
+const { app, BrowserWindow, ipcMain } = require('electron/main')
 const path = require('node:path')
+const fs = require('fs')
+
+function writeFile(_, data) {
+  console.log(data)
+  fs.writeFileSync('D:/hello.txt', data)
+}
+
 // 创建一个窗口
 const creatWindow = () => {
   const win = new BrowserWindow({
@@ -20,16 +27,17 @@ const creatWindow = () => {
   win.loadFile('pages/index.html')
 }
 
-app.on('ready', () => {
+app.whenReady().then(() => {
   // 执行创建窗口函数
   creatWindow();
-  console.log('--')
   app.on('activate', () => {
     // 苹果macos 系统没有窗口创建一个窗口
     if (BrowserWindow.getAllWindows().length === 0) {
       creatWindow();
     }
   })
+  // 注册写入文件
+  ipcMain.handle('file-save', writeFile)
 })
 
 app.on('window-all-closed', () => {
