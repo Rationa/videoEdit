@@ -1,0 +1,16 @@
+{
+  "name": "dayone",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon --exec electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "codeMo",
+  "license": "ISC",
+  "description": "electron demo",
+  "devDependencies": {
+    "electron": "^36.3.1",
+    "nodemon": "^3.1.10"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "restartable": "r",
+  "verbose": true,
+  "watch": ["*.*"],
+  "ignore": [
+    "node_modules",
+    ".vscode"
+  ],
+  "ext": "html,css,js"
+}
